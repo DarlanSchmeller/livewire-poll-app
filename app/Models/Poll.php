@@ -9,6 +9,10 @@ class Poll extends Model
 {
     protected $table = 'polls';
 
+    protected $fillable = [
+        'title',
+    ];
+
     public function options(): HasMany
     {
         return $this->hasMany(Option::class);

@@ -10,6 +10,11 @@ class Option extends Model
 {
     protected $table = 'options';
 
+    protected $fillable = [
+        'name',
+        'poll_id'
+    ];
+
     public function poll(): BelongsTo
     {
         return $this->belongsTo(Poll::class);
