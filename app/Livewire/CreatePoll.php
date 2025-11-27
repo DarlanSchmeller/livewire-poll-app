@@ -18,4 +18,12 @@ class CreatePoll extends Component
     {
         $this->options[] = $this->title;
     }
+
+    public function removeOption($index)
+    {
+        unset($this->options[$index]);
+
+        // Avoid empty elements and reindex
+        $this->options = array_values($this->options);
+    }
 }

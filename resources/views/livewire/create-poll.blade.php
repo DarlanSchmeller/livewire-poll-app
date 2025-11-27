@@ -11,7 +11,11 @@
 
     @foreach($options as $index => $option)
         <div class="mt-4">
-            <p>{{ $index + 1 }}. {{ $option }}</p>
+            <label>Option {{ $index +1 }}</label>
+            <div class="flex gap-2 ">
+                <input type="text" name="" id="" wire:model="options.{{ $index }}">
+                <button class="btn" wire:click.prevent="removeOption({{ $index }})">Remove</button>
+            </div>
         </div>
     @endforeach
 </div>
