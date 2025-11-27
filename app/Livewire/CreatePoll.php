@@ -11,9 +11,24 @@ class CreatePoll extends Component
     public $title;
     public $options = [''];
 
+    protected $rules = [
+        'title' => 'required|min:3|max:255',
+        'options' => 'required|array|min:1|max:10',
+        'options.*' => 'required|min:2|max:255',
+    ];
+
+    protected $messages = [
+        'options.*' => 'The option can\'t be empty'
+    ];
+
     public function render()
     {
         return view('livewire.create-poll');
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, $this->rules);
     }
 
     public function addOption()
@@ -31,9 +46,9 @@ class CreatePoll extends Component
 
     public function createPoll()
     {
-        Poll::create([
-            'title' => $this->title
-        ])->options()->createMany(
+        $validated = $this->validate($this->rules);
+
+        Poll::create($validated)->options()->createMany(
             collect($this->options)
                 ->map(fn($option) => ['name' => $option])
                 ->all()

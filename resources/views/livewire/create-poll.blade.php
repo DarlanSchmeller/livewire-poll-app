@@ -1,7 +1,11 @@
 <div>
     <form wire:submit.prevent="createPoll">
         <label for="title">Poll Title</label>
-        <input type="text" name="title" id="title" wire:model.live="title" />
+        <input type="text" wire:model.live="title" />
+        @error('title')
+            <p class="text-red-400">{{ $message }}</p>
+        @enderror
+
         <div class="mt-4">
             <button class="btn" wire:click.prevent="addOption">Add Option</button>
         </div>
@@ -10,11 +14,17 @@
             <div class="mt-4">
                 <label>Option {{ $index + 1 }}</label>
                 <div class="flex gap-2 ">
-                    <input type="text" name="" id="" wire:model="options.{{ $index }}">
+                    <input type="text" wire:model.live="options.{{ $index }}">
                     <button class="btn" wire:click.prevent="removeOption({{ $index }})">Remove</button>
                 </div>
+                @error('options.' . $index)
+                    <p class="text-red-400">{{ $message }}</p>            
+                @enderror
             </div>
-        @endforeach
+            @endforeach
+            @error('options')
+                <p class="text-red-400 mt-4">{{ $message }}</p>            
+            @enderror
         <hr class="mt-12">
         <div class="mt-4 flex justify-end">
             <button type="submit" class="btn">Create Poll</button>
