@@ -15,6 +15,8 @@ class Option extends Model
         'poll_id'
     ];
 
+    public $timestamps = false;
+
     public function poll(): BelongsTo
     {
         return $this->belongsTo(Poll::class);

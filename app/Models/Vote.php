@@ -9,6 +9,8 @@ class Vote extends Model
 {
     protected $table = 'votes';
 
+    public $timestamps = false;
+
     public function option(): BelongsTo
     {
         return $this->belongsTo(Option::class);
