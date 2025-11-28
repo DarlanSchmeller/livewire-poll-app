@@ -8,42 +8,43 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    {{-- blade-formatter-disable --}}
-  <style type="text/tailwindcss">
-    .btn {
-      @apply rounded-md px-2 py-1 text-center font-medium text-slate-700 shadow-sm ring-1 ring-slate-700/10 hover:bg-slate-50
-    }
-
-    label {
-      @apply block uppercase text-slate-700 mb-2
-    }
-
-    input, 
-    textarea {
-      @apply shadow-sm appearance-none border w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none
-    }
-
-    .error {
-      @apply text-red-500 text-sm
-    }
-  </style>
-  {{-- blade-formatter-enable --}}
-
     @livewireStyles
 </head>
 
-<body class="container mx-auto mt-10 mb-10 max-w-lg">
+<body class="bg-slate-800 min-h-screen flex justify-center py-10 px-4">
+
+    <div class="w-full max-w-2xl space-y-12">
+
+        <header class="text-center">
+            <h1 class="text-3xl font-bold text-slate-300 tracking-tight">Livewire Poll App</h1>
+            <p class="text-slate-400 mt-1 font-semibold">Create polls, vote in real-time, and enjoy the magic ✨</p>
+        </header>
+
+        <section>
+            <h2 class="text-xl font-semibold text-slate-300 mb-4">Create Poll</h2>
+            @livewire('create-poll')
+        </section>
+
+        <hr class="border-slate-600 rounded-lg">
+
+        <section>
+            <h2 class="text-xl font-semibold text-slate-300 mb-4">Available Polls</h2>
+            @livewire('polls')
+        </section>
+
+        <footer class="pt-8 text-center text-slate-400 text-md">
+            <p>Built with ❤️ using Laravel & Livewire</p>
+            <p class="mt-4 text-sm">
+                Made by
+                <a href="https://github.com/DarlanSchmeller" target="_blank" class="text-pink-400 underline">
+                    Darlan Rodrigues Schmeller
+                </a>
+            </p>
+        </footer>
+
+    </div>
+
     @livewireScripts
-
-    <div>
-      <h2 class="my-4 text-2xl">Create Poll</h2>
-      @livewire('create-poll')
-    </div>
-
-    <div>
-      <h2 class="my-4 text-2xl">Available Polls</h2>
-      @livewire('polls')
-    </div>
 </body>
 
 </html>
